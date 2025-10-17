@@ -7,14 +7,6 @@
 body {
   font-family: Arial, sans-serif;
 }
-/* Make navbar always full width */
-#navbar {
-  width: 100%;
-}
-
-#navbar nav {
-  width: 100%;
-}
 
 .navbar {
   background-color: #000;
@@ -23,7 +15,6 @@ body {
 .navbox {
   display: flex;
   align-items: center;
-  /* vertical align */
   justify-content: space-between;
   padding: 10px 20px;
 }
@@ -36,16 +27,13 @@ body {
   display: flex;
   list-style: none;
   gap: 15px;
-  position: sticky;
-  top: 0;
+  position: relative; /* Changed from sticky for better integration */
   z-index: 1000;
   background: black;
-  /* Remove width: 100% here as it breaks the desktop layout when navbox is space-between */
 }
 
 .nav-links li {
   position: relative;
-  /* for dropdown positioning */
 }
 
 .nav-links a {
@@ -60,22 +48,17 @@ body {
   color: orange;
 }
 
-/* Dropdown menu */
+/* Dropdown menu styles (unchanged) */
 .dropdown {
   display: none;
   position: absolute;
   top: 100%;
-  /*directlybelowtheparentli*/
   left: 0;
   background: #222;
   min-width: 200px;
   list-style: none;
   padding: 6px 0;
   border-radius: 6px;
-  -webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
-  -ms-border-radius: 6px;
-  -o-border-radius: 6px;
 }
 
 .dropdown li a {
@@ -88,10 +71,11 @@ body {
   color: #000;
 }
 
-/* Show dropdown when parent li is hovered */
 .nav-links li:hover > .dropdown {
   display: block;
 }
+
+/* 🔑 Desktop Login Button (now part of the nav-links) */
 .navbar .navbox .login {
   height: 40px;
   width: 100px;
@@ -99,12 +83,25 @@ body {
   color: green;
   border-radius: 20px;
   cursor: pointer;
-  /* Added for proper alignment on desktop */
-  margin-left: 20px;
+  /* Ensure it looks like a button inside the link */
+  border: none;
+  padding: 0;
+  font-weight: bold;
 }
+
 .navbar .navbox .login:hover {
   background-color: green;
   color: black;
+}
+
+/* 🔑 Hide the login button link in the desktop view */
+.nav-links .mobile-login-link {
+  display: none;
+}
+
+/* Hide hamburger icon on desktop */
+.menu-toggle {
+  display: none;
 }
 
 /* =======================
@@ -112,36 +109,31 @@ body {
     ======================= */
 
 @media (max-width: 900px) {
-  /* FIX: Removed flex-direction: column; so logo and hamburger stay on one line */
+  /* Ensure logo and hamburger are aligned */
   .navbox {
-    align-items: center; /* Ensure vertical alignment */
+    align-items: center;
+    /* FIX: Set minimum height for navbox to stabilize mobile view */
+    min-height: 120px;
+    position: relative; /* Needed to position menu links absolutely */
   }
 
   .logo {
     height: 100px;
-    margin-bottom: 0; /* Removed margin */
   }
 
-  /* Hide links and login button by default on mobile */
+  /* Hide links by default on mobile */
   .nav-links {
     flex-direction: column;
     align-items: flex-start;
     width: 100%;
-    display: none; /* hidden by default */
-    background: black;
-    position: absolute;
-    /* FIX: Adjusted top position to be below the navbox/header height (approx) */
-    top: 120px;
-    left: 0;
-    padding: 0; /* Adjust padding */
-    /* Ensure the sticky behavior is on the header, not nav-links */
-    position: static;
-    z-index: 999;
-  }
-
-  /* Hide the desktop login button on mobile */
-  .navbar .navbox .login {
     display: none;
+    background: black;
+    /* FIX: Position relative to navbox and span full width below */
+    position: absolute;
+    top: 100%; /* Drops below the navbox */
+    left: 0;
+    padding: 0;
+    z-index: 999;
   }
 
   /* Show when active */
@@ -149,32 +141,41 @@ body {
     display: flex;
   }
 
-  /* Optional: Add a mobile-specific login link inside the list */
-  .nav-links li.mobile-login {
-    display: block; /* Show only on mobile */
-  }
-
-  .nav-links li {
-    width: 100%;
-    /* Keep dropdowns visible on hover, but they might be better as click/touch toggles on mobile */
-  }
-
-  .nav-links li:hover > .dropdown {
-    /* Keep this for now, but often replaced with a JS toggle on mobile */
+  /* Show the mobile login link and button */
+  .nav-links .mobile-login-link {
     display: block;
-  }
-
-  .dropdown {
-    position: static; /* Stack dropdowns below parent link on mobile */
-    min-width: auto;
     width: 100%;
-    border-radius: 0;
-  }
-
-  .nav-links a {
-    width: 100%;
+    /* Override link styling for button padding */
     padding: 12px 20px;
     border-bottom: 1px solid #333;
+  }
+
+  /* Style the anchor tag holding the button */
+  .nav-links .mobile-login-link a.login-mobile-a {
+    /* Reset A tag styles for the login button link */
+    background: none;
+    color: white;
+    text-align: left;
+    padding: 0;
+    border: none;
+  }
+
+  /* Reset the LOGIN button appearance to look like a normal menu item on mobile */
+  .nav-links .mobile-login-link .login {
+    height: auto;
+    width: 100%;
+    background-color: transparent;
+    color: #eef6ff;
+    border-radius: 0;
+    padding: 10px 0;
+    font-weight: 600;
+    text-align: left;
+    margin: 0;
+  }
+
+  .nav-links .mobile-login-link .login:hover {
+    background-color: orange;
+    color: black;
   }
 
   /* Hamburger button */
@@ -184,10 +185,16 @@ body {
     color: white;
     font-size: 28px;
     margin-left: auto;
-    margin-right: 20px;
+    margin-right: 20px; /* Space from the edge */
+  }
+
+  /* Hide the login button in the primary menu area on mobile (it's now inside .nav-links) */
+  .navbar .navbox > a:last-of-type {
+    display: none;
   }
 }
 
+/* Ensures menu-toggle is hidden on desktop */
 @media (min-width: 901px) {
   .menu-toggle {
     display: none;
