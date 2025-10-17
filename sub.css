@@ -10,7 +10,6 @@ body {
 
 .navbar {
   background-color: #000;
-  /* Ensure the header is the main container for z-index */
   z-index: 1000;
   position: relative;
 }
@@ -24,8 +23,8 @@ body {
 
 .logo {
   height: 150px;
-  /* FIX: Ensure logo is always on top */
-  z-index: 1010;
+  /* FIX: Resetting Z-index to default so it doesn't cause issues */
+  z-index: auto;
 }
 
 .nav-links {
@@ -33,8 +32,8 @@ body {
   list-style: none;
   gap: 15px;
   position: relative;
-  z-index: 999; /* Lower than navbar/logo on mobile to avoid overlap */
   background: black;
+  /* FIX: Removed z-index here */
 }
 
 .nav-links li {
@@ -64,7 +63,6 @@ body {
   list-style: none;
   padding: 6px 0;
   border-radius: 6px;
-  /* FIX: Ensure dropdown is above main menu items when open */
   z-index: 1050;
 }
 
@@ -82,8 +80,8 @@ body {
   display: block;
 }
 
-/* Desktop Login Button */
-.navbar .navbox .login {
+/* 🔑 DESKTOP Login Button Styling */
+.desktop-login .login {
   height: 40px;
   width: 100px;
   background-color: white;
@@ -95,14 +93,19 @@ body {
   font-weight: bold;
 }
 
-.navbar .navbox .login:hover {
+.desktop-login .login:hover {
   background-color: green;
   color: black;
 }
 
-/* Hide the login button link in the desktop view (it's for mobile) */
+/* 🔑 Hide the mobile login link on desktop */
 .nav-links .mobile-login-link {
   display: none;
+}
+
+/* 🔑 Ensure the desktop login button is visible on desktop */
+.desktop-login {
+  display: block;
 }
 
 /* Hide hamburger icon on desktop */
@@ -115,15 +118,18 @@ body {
     ======================= */
 
 @media (max-width: 900px) {
-  /* Ensure logo and hamburger are aligned */
+  /* Logo fix */
+  .logo {
+    height: 100px;
+    /* FIX: Ensure logo sits well against the hamburger icon */
+    z-index: 1001;
+  }
+
+  /* Ensure navbox holds the header content */
   .navbox {
     align-items: center;
     min-height: 120px;
     position: relative;
-  }
-
-  .logo {
-    height: 100px;
   }
 
   /* Hide links by default on mobile */
@@ -145,21 +151,18 @@ body {
     display: flex;
   }
 
-  /* FIX: Mobile Dropdown Positioning - makes it stack *below* the parent link */
+  /* FIX: Mobile Dropdown Positioning (stacking below) */
   .nav-links li:hover > .dropdown {
     display: block;
-    /* FIX: Changed position from absolute to static */
     position: static;
-    /* FIX: Added border to separate from parent link */
     border-top: 1px solid #333;
   }
 
   .dropdown {
-    /* Ensure no rounding on edges when stacked vertically */
     border-radius: 0;
   }
 
-  /* Show the mobile login link and button */
+  /* 🔑 Show the mobile login link */
   .nav-links .mobile-login-link {
     display: block;
     width: 100%;
@@ -167,6 +170,7 @@ body {
     border-bottom: 1px solid #333;
   }
 
+  /* Styling for the mobile login button to look like a menu item */
   .nav-links .mobile-login-link a.login-mobile-a {
     background: none;
     color: white;
@@ -200,15 +204,13 @@ body {
     font-size: 28px;
     margin-left: auto;
     margin-right: 20px;
+    /* FIX: Ensure icon is on top of the expanding menu */
+    z-index: 1001;
   }
 
-  /* Hide the desktop login button */
-  .navbar .navbox > a:last-of-type {
+  /* 🔑 Hide the desktop login button on mobile */
+  .desktop-login {
     display: none;
-  }
-  .nav-links li:hover > .dropdown {
-    /* ... other styles ... */
-    position: static; /* FIX: Allows it to stack below the parent link */
   }
 }
 
