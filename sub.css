@@ -1,3 +1,6 @@
+/* -------------------------------------- */
+/* 1. Global Reset and Base Styles */
+/* -------------------------------------- */
 * {
   margin: 0;
   padding: 0;
@@ -5,218 +8,242 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Poppins", sans-serif;
+  background-color: #fff;
 }
 
+/* -------------------------------------- */
+/* 2. Navbar Styling (Desktop & Shared) */
+/* -------------------------------------- */
 .navbar {
-  background-color: #000;
+  position: sticky;
+  top: 0;
   z-index: 1000;
-  position: relative;
-}
-
-.navbox {
   display: flex;
-  align-items: center;
+  /* Ensures main items (logo, links, button) are spaced out */
   justify-content: space-between;
-  padding: 10px 20px;
+  /* Ensures all main items are vertically centered */
+  align-items: center;
+  padding: 12px 50px;
+  background: linear-gradient(
+    135deg,
+    rgba(116, 185, 255, 0.6),
+    rgba(253, 121, 168, 0.6)
+  );
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 15px 15px;
 }
 
-.logo {
-  height: 150px;
-  /* FIX: Resetting Z-index to default so it doesn't cause issues */
-  z-index: auto;
+.logo img {
+  width: 110px;
+  cursor: pointer;
 }
 
+/* -------------------------------------- */
+/* 3. Hamburger Styling */
+/* -------------------------------------- */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  cursor: pointer;
+  width: 35px;
+  height: 28px;
+  z-index: 1001;
+}
+
+.hamburger span {
+  height: 3px;
+  width: 100%;
+  background: #000;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translateY(9px);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-9px);
+}
+
+/* -------------------------------------- */
+/* 4. Navigation Links and Dropdowns (Desktop) */
+/* -------------------------------------- */
 .nav-links {
-  display: flex;
   list-style: none;
-  gap: 15px;
-  position: relative;
-  background: black;
-  /* FIX: Removed z-index here */
+  display: flex;
+  /* Ensures the links themselves are vertically aligned with each other */
+  align-items: center;
+  gap: 25px;
+  /* FIX: Pushes the nav links to the center in the space-between layout */
+  margin: 0 auto;
 }
 
 .nav-links li {
   position: relative;
+  /* Ensures list items are aligned to the text base line */
+  align-items: center;
 }
 
 .nav-links a {
-  color: #eef6ff;
   text-decoration: none;
-  padding: 10px 12px;
-  display: block;
-  font-weight: 600;
+  color: #000;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  /* Prevents link text from wrapping */
+  white-space: nowrap;
 }
 
 .nav-links a:hover {
-  color: orange;
+  background: rgba(255, 255, 255, 0.25);
 }
 
-/* Dropdown menu styles */
-.dropdown {
+.nav-links li ul.dropdown-menu {
   display: none;
   position: absolute;
   top: 100%;
   left: 0;
-  background: #222;
-  min-width: 200px;
-  list-style: none;
-  padding: 6px 0;
-  border-radius: 6px;
-  z-index: 1050;
+  background-color: rgba(30, 30, 30, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+  min-width: 150px;
+  padding: 5px 0;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
 }
 
-.dropdown li a {
-  padding: 10px 16px;
-  color: #eef6ff;
+.nav-links li:hover > ul.dropdown-menu {
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 0.25s ease-in-out;
 }
 
-.dropdown li a:hover {
-  background: orange;
-  color: #000;
-}
-
-.nav-links li:hover > .dropdown {
+.nav-links li ul.dropdown-menu a {
+  color: #fff;
   display: block;
+  padding: 10px 20px;
+  transition: background 0.3s;
 }
 
-/* 🔑 DESKTOP Login Button Styling */
-.desktop-login .login {
-  height: 40px;
-  width: 100px;
-  background-color: white;
-  color: green;
-  border-radius: 20px;
-  cursor: pointer;
+.nav-links li ul.dropdown-menu a:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Login Button */
+.login-btn button {
+  padding: 8px 18px;
+  background: linear-gradient(135deg, #6c5ce7, #00cec9);
+  color: #fff;
+  font-weight: 600;
   border: none;
-  padding: 0;
-  font-weight: bold;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
 }
 
-.desktop-login .login:hover {
-  background-color: green;
-  color: black;
+.login-btn button:hover {
+  background: linear-gradient(135deg, #00cec9, #6c5ce7);
+  transform: scale(1.05);
 }
 
-/* 🔑 Hide the mobile login link on desktop */
-.nav-links .mobile-login-link {
-  display: none;
-}
-
-/* 🔑 Ensure the desktop login button is visible on desktop */
-.desktop-login {
-  display: block;
-}
-
-/* Hide hamburger icon on desktop */
-.menu-toggle {
-  display: none;
-}
-
-/* =======================
-    📱 MOBILE RESPONSIVE NAVBAR
-    ======================= */
-
-@media (max-width: 900px) {
-  /* Logo fix */
-  .logo {
-    height: 100px;
-    /* FIX: Ensure logo sits well against the hamburger icon */
-    z-index: 1001;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
   }
-
-  /* Ensure navbox holds the header content */
-  .navbox {
-    align-items: center;
-    min-height: 120px;
-    position: relative;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
+}
 
-  /* Hide links by default on mobile */
-  .nav-links {
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
-    display: none;
-    background: black;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    padding: 0;
-    z-index: 999;
-  }
-
-  /* Show when active */
-  .nav-links.active {
+/* -------------------------------------- */
+/* 5. Mobile Styles */
+/* -------------------------------------- */
+@media (max-width: 768px) {
+  .hamburger {
     display: flex;
   }
 
-  /* FIX: Mobile Dropdown Positioning (stacking below) */
-  .nav-links li:hover > .dropdown {
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    background: linear-gradient(
+      135deg,
+      rgba(116, 185, 255, 0.95),
+      rgba(253, 121, 168, 0.95)
+    );
+    backdrop-filter: blur(12px);
+    border-radius: 0 0 12px 12px;
+    text-align: center;
+    z-index: 999;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .nav-links li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .nav-links li:last-child {
+    border-bottom: none;
+  }
+
+  .nav-links li a {
     display: block;
+    padding: 12px 16px;
+    color: #000;
+  }
+
+  .nav-links li ul.dropdown-menu {
+    display: none;
     position: static;
-    border-top: 1px solid #333;
+    background: rgba(255, 255, 255, 0.1);
   }
 
-  .dropdown {
-    border-radius: 0;
+  .nav-links li ul.dropdown-menu.show {
+    display: flex;
+    flex-direction: column;
   }
 
-  /* 🔑 Show the mobile login link */
-  .nav-links .mobile-login-link {
-    display: block;
-    width: 100%;
-    padding: 12px 20px;
-    border-bottom: 1px solid #333;
+  .nav-links li ul.dropdown-menu a {
+    color: #333;
+    padding-left: 30px;
   }
 
-  /* Styling for the mobile login button to look like a menu item */
-  .nav-links .mobile-login-link a.login-mobile-a {
-    background: none;
-    color: white;
-    text-align: left;
-    padding: 0;
-    border: none;
-  }
-
-  .nav-links .mobile-login-link .login {
-    height: auto;
-    width: 100%;
-    background-color: transparent;
-    color: #eef6ff;
-    border-radius: 0;
-    padding: 10px 0;
-    font-weight: 600;
-    text-align: left;
-    margin: 0;
-  }
-
-  .nav-links .mobile-login-link .login:hover {
-    background-color: orange;
-    color: black;
-  }
-
-  /* Hamburger button */
-  .menu-toggle {
-    display: block;
-    cursor: pointer;
-    color: white;
-    font-size: 28px;
-    margin-left: auto;
-    margin-right: 20px;
-    /* FIX: Ensure icon is on top of the expanding menu */
-    z-index: 1001;
-  }
-
-  /* 🔑 Hide the desktop login button on mobile */
-  .desktop-login {
+  .login-btn {
     display: none;
   }
 }
 
-/* Ensures menu-toggle is hidden on desktop */
-@media (min-width: 901px) {
-  .menu-toggle {
-    display: none;
+/* -------------------------------------- */
+/* 6. Desktop Restoration */
+/* -------------------------------------- */
+@media (min-width: 769px) {
+  .nav-links {
+    display: flex !important;
+    position: static;
+    flex-direction: row;
+  }
+  .hamburger {
+    display: none !important;
+  }
+  .login-btn {
+    display: block;
   }
 }
