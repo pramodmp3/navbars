@@ -1,69 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
+   
   <head>
+       
     <meta charset="UTF-8" />
+       
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NAVBAR</title>
-    <link rel="stylesheet" href="./sub.css" />
+       
+    <title>Navbar</title>
+       
+    <link rel="stylesheet" href="sub.css" />
+     
   </head>
+   
   <body>
-    <header class="navbar">
-      <nav class="navbox">
-        <a href="index.html">
-          <img src="./assets/logo.png" alt="Logo" class="logo" />
-        </a>
-        <ul class="nav-links">
-          <li>
-            <a href="#">HOME ▾</a>
-            <ul class="dropdown">
-              <li><a href="./home2.html">HOME2</a></li>
-            </ul>
-          </li>
+       
+    <nav class="navbar">
+           
+      <div class="logo">
+               
+        <a href="./home2.html"><img src="./files/logo.png" alt="Logo" /></a>    
+         
+      </div>
 
-          <li>
-            <a href="#">ABOUT US ▾</a>
-            <ul class="dropdown">
-              <li><a href="./About.html">About Us</a></li>
-              <li><a href="./members.html">Members</a></li>
-              <li><a href="./career.html">Careers</a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="#">SERVICES ▾</a>
-            <ul class="dropdown">
-              <li><a href="./finance.html">Financial Institutions</a></li>
-              <li><a href="./family.html">Family Law</a></li>
-              <li><a href="./realestate.html">Real Estate</a></li>
-              <li><a href="./health.html">Healthcare</a></li>
-              <li><a href="./employe.html">Labour & Employment</a></li>
-              <li><a href="./tech.html">Technology</a></li>
-            </ul>
-          </li>
-          <li><a href="./blog.html">BLOG</a></li>
-          <li><a href="./contact.html">CONTACT US</a></li>
+                 
+      <div class="hamburger" id="hamburger">
+                <span></span>         <span></span>         <span></span>      
+      </div>
 
-          <li class="mobile-login-link">
-            <a href="./login.html" class="login-mobile-a">
-              <button class="login">LOGIN</button>
-            </a>
-          </li>
-        </ul>
+           
+      <ul class="nav-links" id="navLinks">
+               
+        <li class="has-dropdown">
+                    <a href="home2.html">HOME ▾</a>          
+          <ul class="dropdown-menu">
+                       
+            <li><a href="index.html">HOME1</a></li>
+                     
+          </ul>
+                 
+        </li>
 
-        <span class="desktop-login">
-          <a href="./login.html"><button class="login">LOGIN</button></a>
-        </span>
+               
+        <li class="has-dropdown">
+                    <a href="#">PRODUCTS ▾</a>          
+          <ul class="dropdown-menu">
+                       
+            <li><a href="./clio.html">CLIO</a></li>
+                       
+            <li><a href="./mycase.html">MYCASE</a></li>
+                       
+            <li><a href="./analytics.html">ANALYTICS</a></li>
+                     
+          </ul>
+                 
+        </li>
 
-        <div class="menu-toggle">&#9776;</div>
-      </nav>
-    </header>
-    <script>
-      const menuToggle = document.querySelector(".menu-toggle");
-      const navLinks = document.querySelector(".nav-links");
+               
+        <li class="has-dropdown">
+                    <a href="#">ABOUT US ▾</a>          
+          <ul class="dropdown-menu">
+                       
+            <li><a href="./about2.html">ABOUT</a></li>
+                       
+            <li><a href="./members2.html">TEAM</a></li>
+                     
+          </ul>
+                 
+        </li>
 
-      menuToggle.addEventListener("click", () => {
-        navLinks.classList.toggle("active");
-      });
-    </script>
+               
+        <li><a href="./faq.html">FAQs</a></li>
+               
+        <li><a href="./blog2.html">BLOG</a></li>
+               
+        <li><a href="./contact2.html">CONTACT</a></li>
+             
+      </ul>
+
+           
+      <div class="login-btn">
+               
+        <a href="./login2.html"><button id="loginButton">LOGIN</button></a>    
+         
+      </div>
+         
+    </nav>
+
+       
+    <script src="sub.js"></script>
+     
   </body>
 </html>
-
