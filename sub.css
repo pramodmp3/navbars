@@ -1,0 +1,195 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+/* Make navbar always full width */
+#navbar {
+  width: 100%;
+}
+
+#navbar nav {
+  width: 100%;
+}
+
+.navbar {
+  background-color: #000;
+}
+
+.navbox {
+  display: flex;
+  align-items: center;
+  /* vertical align */
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+
+.logo {
+  height: 150px;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 15px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: black;
+  /* Remove width: 100% here as it breaks the desktop layout when navbox is space-between */
+}
+
+.nav-links li {
+  position: relative;
+  /* for dropdown positioning */
+}
+
+.nav-links a {
+  color: #eef6ff;
+  text-decoration: none;
+  padding: 10px 12px;
+  display: block;
+  font-weight: 600;
+}
+
+.nav-links a:hover {
+  color: orange;
+}
+
+/* Dropdown menu */
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  /*directlybelowtheparentli*/
+  left: 0;
+  background: #222;
+  min-width: 200px;
+  list-style: none;
+  padding: 6px 0;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+}
+
+.dropdown li a {
+  padding: 10px 16px;
+  color: #eef6ff;
+}
+
+.dropdown li a:hover {
+  background: orange;
+  color: #000;
+}
+
+/* Show dropdown when parent li is hovered */
+.nav-links li:hover > .dropdown {
+  display: block;
+}
+.navbar .navbox .login {
+  height: 40px;
+  width: 100px;
+  background-color: white;
+  color: green;
+  border-radius: 20px;
+  cursor: pointer;
+  /* Added for proper alignment on desktop */
+  margin-left: 20px;
+}
+.navbar .navbox .login:hover {
+  background-color: green;
+  color: black;
+}
+
+/* =======================
+    📱 MOBILE RESPONSIVE NAVBAR
+    ======================= */
+
+@media (max-width: 900px) {
+  /* FIX: Removed flex-direction: column; so logo and hamburger stay on one line */
+  .navbox {
+    align-items: center; /* Ensure vertical alignment */
+  }
+
+  .logo {
+    height: 100px;
+    margin-bottom: 0; /* Removed margin */
+  }
+
+  /* Hide links and login button by default on mobile */
+  .nav-links {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    display: none; /* hidden by default */
+    background: black;
+    position: absolute;
+    /* FIX: Adjusted top position to be below the navbox/header height (approx) */
+    top: 120px;
+    left: 0;
+    padding: 0; /* Adjust padding */
+    /* Ensure the sticky behavior is on the header, not nav-links */
+    position: static;
+    z-index: 999;
+  }
+
+  /* Hide the desktop login button on mobile */
+  .navbar .navbox .login {
+    display: none;
+  }
+
+  /* Show when active */
+  .nav-links.active {
+    display: flex;
+  }
+
+  /* Optional: Add a mobile-specific login link inside the list */
+  .nav-links li.mobile-login {
+    display: block; /* Show only on mobile */
+  }
+
+  .nav-links li {
+    width: 100%;
+    /* Keep dropdowns visible on hover, but they might be better as click/touch toggles on mobile */
+  }
+
+  .nav-links li:hover > .dropdown {
+    /* Keep this for now, but often replaced with a JS toggle on mobile */
+    display: block;
+  }
+
+  .dropdown {
+    position: static; /* Stack dropdowns below parent link on mobile */
+    min-width: auto;
+    width: 100%;
+    border-radius: 0;
+  }
+
+  .nav-links a {
+    width: 100%;
+    padding: 12px 20px;
+    border-bottom: 1px solid #333;
+  }
+
+  /* Hamburger button */
+  .menu-toggle {
+    display: block;
+    cursor: pointer;
+    color: white;
+    font-size: 28px;
+    margin-left: auto;
+    margin-right: 20px;
+  }
+}
+
+@media (min-width: 901px) {
+  .menu-toggle {
+    display: none;
+  }
+}
