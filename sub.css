@@ -21,9 +21,9 @@ body {
   z-index: 1000;
   display: flex;
   /* Ensures main items (logo, links, button) are spaced out */
-  justify-content: space-between;
+  justify-content: space-between; 
   /* Ensures all main items are vertically centered */
-  align-items: center;
+  align-items: center; 
   padding: 12px 50px;
   background: linear-gradient(
     135deg,
@@ -78,16 +78,13 @@ body {
 .nav-links {
   list-style: none;
   display: flex;
-  /* Ensures the links themselves are vertically aligned with each other */
   align-items: center;
   gap: 25px;
-  /* FIX: Pushes the nav links to the center in the space-between layout */
-  margin: 0 auto;
+  margin: 0 auto; 
 }
 
 .nav-links li {
   position: relative;
-  /* Ensures list items are aligned to the text base line */
   align-items: center;
 }
 
@@ -99,8 +96,7 @@ body {
   padding: 8px 10px;
   border-radius: 6px;
   transition: all 0.3s ease;
-  /* Prevents link text from wrapping */
-  white-space: nowrap;
+  white-space: nowrap; 
 }
 
 .nav-links a:hover {
@@ -174,6 +170,17 @@ body {
     display: flex;
   }
 
+  /* FIX 1: Ensure the navbar container prioritizes logo and hamburger placement */
+  .navbar {
+    /* Use space-between for mobile to separate logo/links/hamburger */
+    justify-content: space-between;
+  }
+  
+  /* FIX 2: Hide the desktop login button container explicitly */
+  .login-btn {
+    display: none;
+  }
+
   .nav-links {
     display: none;
     position: absolute;
@@ -226,9 +233,7 @@ body {
     padding-left: 30px;
   }
 
-  .login-btn {
-    display: none;
-  }
+  /* .login-btn display: none is now above */
 }
 
 /* -------------------------------------- */
