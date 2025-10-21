@@ -1,247 +1,250 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  font-family: "Poppins", sans-serif;
-  background-color: #fff;
+    font-family: "Poppins", sans-serif;
+    background-color: #fff;
 }
 
 .navbar {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 50px;
-  background: linear-gradient(
-    135deg,
-    rgba(116, 185, 255, 0.6),
-    rgba(253, 121, 168, 0.6)
-  );
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  border-radius: 0 0 15px 15px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 50px;
+    background: linear-gradient(
+        135deg,
+        rgba(116, 185, 255, 0.6),
+        rgba(253, 121, 168, 0.6)
+    );
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 15px 15px;
 }
 
 .logo img {
-  width: 110px;
-  cursor: pointer;
+    width: 110px;
+    cursor: pointer;
 }
 
+/* -------------------------------------- */
+/* Updated Mobile Menu Button Styling */
+/* -------------------------------------- */
 .hamburger {
-  display: none;
-  flex-direction: column;
-  justify-content: space-around;
-  cursor: pointer;
-  width: 35px;
-  height: 28px;
-  z-index: 1001;
+    display: none;
+    cursor: pointer;
+    z-index: 1001;
+    /* Styles for the new "MENU" button container */
+    padding: 5px 10px;
+    border: 1px solid #000;
+    border-radius: 6px;
 }
 
-.hamburger span {
-  height: 3px;
-  width: 100%;
-  background: #000;
-  border-radius: 3px;
-  transition: all 0.3s ease;
+.hamburger .menu-label {
+    font-weight: 600;
+    font-size: 14px;
+    color: #000;
 }
 
-.hamburger.active span:nth-child(1) {
-  transform: rotate(45deg) translateY(9px);
+/* On mobile, when the menu is open, change the label to 'CLOSE' */
+.hamburger.active .menu-label::before {
+    content: "CLOSE";
+    font-weight: 600;
+    font-size: 14px;
+    color: #000;
 }
-.hamburger.active span:nth-child(2) {
-  opacity: 0;
+
+/* Hide the original "MENU" text when "CLOSE" is active (optional, but cleaner) */
+.hamburger.active .menu-label {
+    visibility: hidden;
+    width: 0;
+    height: 0;
 }
-.hamburger.active span:nth-child(3) {
-  transform: rotate(-45deg) translateY(-9px);
-}
+
 
 .nav-links {
-  list-style: none;
-  display: flex;
-  align-items: center;
-  gap: 25px;
-  margin: 0 auto;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin: 0 auto;
 }
 
+/* ... (Desktop styles for nav-links, dropdowns, and login-btn remain the same) ... */
+
 .nav-links li {
-  position: relative;
-  align-items: center;
+    position: relative;
+    align-items: center;
 }
 
 .nav-links a {
-  text-decoration: none;
-  color: #000;
-  font-weight: 500;
-  font-size: 16px;
-  padding: 8px 10px;
-  border-radius: 6px;
-  transition: all 0.3s ease;
-  white-space: nowrap;
+    text-decoration: none;
+    color: #000;
+    font-weight: 500;
+    font-size: 16px;
+    padding: 8px 10px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
 }
 
 .nav-links a:hover {
-  background: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.25);
 }
 
 .nav-links li ul.dropdown-menu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: rgba(30, 30, 30, 0.95);
-  backdrop-filter: blur(10px);
-  border-radius: 8px;
-  min-width: 150px;
-  padding: 5px 0;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
-}
-
-.nav-links li:hover > ul.dropdown-menu {
-  display: flex;
-  flex-direction: column;
-  animation: fadeIn 0.25s ease-in-out;
-}
-
-.nav-links li ul.dropdown-menu a {
-  color: #fff;
-  display: block;
-  padding: 10px 20px;
-  transition: background 0.3s;
-}
-
-.nav-links li ul.dropdown-menu a:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.login-btn button {
-  padding: 8px 18px;
-  background: linear-gradient(135deg, #6c5ce7, #00cec9);
-  color: #fff;
-  font-weight: 600;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
-}
-
-.login-btn button:hover {
-  background: linear-gradient(135deg, #00cec9, #6c5ce7);
-  transform: scale(1.05);
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Mobile Styles */
-@media (max-width: 768px) {
-  .hamburger {
-    display: flex;
-  }
-
-  .login-btn {
-    display: none;
-  }
-
-  .nav-links {
     display: none;
     position: absolute;
     top: 100%;
     left: 0;
-    right: 0;
-    flex-direction: column;
-    background: linear-gradient(
-      135deg,
-      rgba(116, 185, 255, 0.95),
-      rgba(253, 121, 168, 0.95)
-    );
-    backdrop-filter: blur(12px);
-    border-radius: 0 0 12px 12px;
-    text-align: center;
-    z-index: 999;
-    /* Add max-height to ensure it doesn't extend infinitely if content is very long */
-    max-height: 80vh;
-    overflow-y: auto;
-  }
-
-  .nav-links.show {
-    display: flex;
-  }
-
-  .nav-links li {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  }
-
-  .nav-links li:last-child {
-    border-bottom: none;
-  }
-
-  .nav-links li a {
-    display: block;
-    padding: 12px 16px;
-    color: #000;
-  }
-
-  .nav-links li ul.dropdown-menu {
-    /* Set position to static for mobile dropdown to stack naturally */
-    position: static;
-    background: rgba(0, 0, 0, 0.1);
-    box-shadow: none;
-    padding: 0;
-    min-width: auto;
-  }
-
-  /* Initially hide the dropdown on mobile */
-  .nav-links li ul.dropdown-menu {
-    display: none;
-  }
-
-  .nav-links li ul.dropdown-menu.show {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .nav-links li ul.dropdown-menu a {
-    color: #000;
-    padding-left: 40px;
-    background: none;
-  }
+    background-color: rgba(30, 30, 30, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+    min-width: 150px;
+    padding: 5px 0;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
 }
 
-/* Desktop Restoration - Crucial for when resizing the browser */
-@media (min-width: 769px) {
-  .nav-links {
-    /* Use !important to override the mobile 'display: none' that might be left by JS */
-    display: flex !important;
-    position: static !important;
-    flex-direction: row !important;
+.nav-links li:hover > ul.dropdown-menu {
+    display: flex;
+    flex-direction: column;
+    animation: fadeIn 0.25s ease-in-out;
+}
 
-    /* Ensure dropdowns are correctly positioned for desktop */
-    max-height: none !important;
-    overflow-y: visible !important;
-  }
-  .hamburger {
-    display: none !important;
-  }
-  .login-btn {
-    display: block !important;
-  }
-  /* Hide the mobile 'show' state for dropdowns on desktop */
-  .nav-links li ul.dropdown-menu.show {
-    display: none;
-  }
+.nav-links li ul.dropdown-menu a {
+    color: #fff;
+    display: block;
+    padding: 10px 20px;
+    transition: background 0.3s;
+}
+
+.nav-links li ul.dropdown-menu a:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.login-btn button {
+    padding: 8px 18px;
+    background: linear-gradient(135deg, #6c5ce7, #00cec9);
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.login-btn button:hover {
+    background: linear-gradient(135deg, #00cec9, #6c5ce7);
+    transform: scale(1.05);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .hamburger {
+        /* Ensure the entire menu container is visible */
+        display: block; 
+    }
+
+    .login-btn {
+        display: none;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background: linear-gradient(
+            135deg,
+            rgba(116, 185, 255, 0.95),
+            rgba(253, 121, 168, 0.95)
+        );
+        backdrop-filter: blur(12px);
+        border-radius: 0 0 12px 12px;
+        text-align: center;
+        z-index: 999;
+        max-height: 80vh; 
+        overflow-y: auto; 
+    }
+
+    .nav-links.show {
+        display: flex;
+    }
+
+    .nav-links li {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .nav-links li:last-child {
+        border-bottom: none;
+    }
+
+    .nav-links li a {
+        display: block;
+        padding: 12px 16px;
+        color: #000;
+    }
+
+    .nav-links li ul.dropdown-menu {
+        position: static;
+        background: rgba(0, 0, 0, 0.1); 
+        box-shadow: none;
+        padding: 0;
+        min-width: auto;
+    }
+    
+    .nav-links li ul.dropdown-menu {
+        display: none;
+    }
+
+    .nav-links li ul.dropdown-menu.show {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .nav-links li ul.dropdown-menu a {
+        color: #000;
+        padding-left: 40px;
+        background: none;
+    }
+}
+
+/* Desktop Restoration */
+@media (min-width: 769px) {
+    .nav-links {
+        display: flex !important;
+        position: static !important;
+        flex-direction: row !important;
+        max-height: none !important;
+        overflow-y: visible !important;
+    }
+    .hamburger {
+        display: none !important;
+    }
+    .login-btn {
+        display: block !important;
+    }
+    .nav-links li ul.dropdown-menu.show {
+        display: none;
+    }
 }
